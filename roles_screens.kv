@@ -1,0 +1,227 @@
+#:import dp kivy.metrics.dp
+
+<AdminDashboardScreen>:
+    name: "admin_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .11, .37, .82, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Admin Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(22)
+                Image:
+                    source: "assets/school_photo.jpg" if os.path.exists("assets/school_photo.jpg") else "assets/default_school_photo.png"
+                    size_hint_y: None
+                    height: dp(180)
+                    allow_stretch: True
+                Label:
+                    text: "Welcome, [b]Admin[/b]!"
+                    font_size: dp(20)
+                    markup: True
+                    color: .12,.33,.55,1
+                # You will add admin features here in Part 4/5
+                Label:
+                    text: "Manage Students, Teachers, Parents, Announcements, Events, Resources, Fees, Transport, Cafeteria, Clubs, Achievements, Emergency, Assignments, and more!"
+                    font_size: dp(13)
+                    color: .3,.3,.3,1
+
+<TeacherDashboardScreen>:
+    name: "teacher_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .16, .52, .16, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Teacher Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(22)
+                Image:
+                    source: root.photo if root.photo else "assets/default_photo.png"
+                    size_hint_y: None
+                    height: dp(140)
+                    allow_stretch: True
+                Label:
+                    text: "Welcome, [b]{}[/b]!".format(root.teacher_name)
+                    font_size: dp(20)
+                    markup: True
+                    color: .12,.33,.55,1
+                # Teacher features to be added in Part 4/5
+
+<StudentDashboardScreen>:
+    name: "student_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .13, .59, .95, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Student Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(22)
+                Image:
+                    source: root.photo if root.photo else "assets/default_photo.png"
+                    size_hint_y: None
+                    height: dp(140)
+                    allow_stretch: True
+                Label:
+                    text: "Welcome, [b]{}[/b]!".format(root.student_name)
+                    font_size: dp(20)
+                    markup: True
+                    color: .12,.33,.55,1
+                # Student features to be added in Part 4/5
+
+<ParentDashboardScreen>:
+    name: "parent_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .96, .7, .07, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Parent Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(22)
+                Label:
+                    text: "Welcome, [b]{}[/b]!".format(root.username)
+                    font_size: dp(20)
+                    markup: True
+                    color: .12,.33,.55,1
+                Label:
+                    text: "Child: {}".format(root.student_name)
+                    font_size: dp(15)
+                    color: .2,.2,.2,1
+                # Parent features to be added in Part 4/5
+
+<ProfileScreen>:
+    name: "profile"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(18)
+        spacing: dp(10)
+        Label:
+            text: "My Profile"
+            font_size: dp(22)
+            color: .11, .37, .82, 1
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: self.minimum_height
+            row_default_height: dp(34)
+            row_force_default: True
+            spacing: dp(5)
+            canvas.before:
+                Color: rgba: .96, .98, 1, 1
+                Rectangle: pos: self.pos; size: self.size
+            # Dynamically fill info in Python code
+
+<AboutScreen>:
+    name: "about"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(10)
+        Label:
+            text: "About This App"
+            font_size: dp(22)
+            color: .16, .52, .16, 1
+        Label:
+            text: "SchoolApp v1.0\nDeveloped in Nigeria\nContact: developer@example.com"
+            font_size: dp(15)
+            color: .12, .33, .55, 1
+
+<PrivacyScreen>:
+    name: "privacy"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(10)
+        Label:
+            text: "Privacy & Policy"
+            font_size: dp(22)
+            color: .96, .7, .07, 1
+        Label:
+            text: "We respect your privacy. All student data is protected and never shared with third parties."
+            font_size: dp(15)
+            color: .12, .33, .55, 1
+
+<SchoolHistoryScreen>:
+    name: "school_history"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(24)
+        spacing: dp(10)
+        Label:
+            text: "School History"
+            font_size: dp(22)
+            color: .13, .59, .95, 1
+        Label:
+            text: "Our school was founded in 1980 and is committed to excellence in education in Nigeria and beyond."
+            font_size: dp(15)
+            color: .12, .33, .55, 1

@@ -1,0 +1,287 @@
+#:import dp kivy.metrics.dp
+
+<AdminDashboardScreen>:
+    name: "admin_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .11, .37, .82, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Admin Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(18)
+                Image:
+                    source: "assets/school_photo.jpg" if os.path.exists("assets/school_photo.jpg") else "assets/default_school_photo.png"
+                    size_hint_y: None
+                    height: dp(180)
+                    allow_stretch: True
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(50)
+                    row_force_default: True
+                    spacing: dp(10)
+                    # ADMIN FEATURE BUTTONS
+                    Button:
+                        text: "Students"
+                        on_release: app.root.ids['features'].manage_students()
+                    Button:
+                        text: "Teachers"
+                        on_release: app.root.ids['features'].manage_teachers()
+                    Button:
+                        text: "Parents"
+                        on_release: app.root.ids['features'].manage_parents()
+                    Button:
+                        text: "Announcements"
+                        on_release: app.root.ids['features'].manage_announcements()
+                    Button:
+                        text: "Events"
+                        on_release: app.root.ids['features'].manage_events()
+                    Button:
+                        text: "Resources"
+                        on_release: app.root.ids['features'].manage_resources()
+                    Button:
+                        text: "Fees"
+                        on_release: app.root.ids['features'].manage_fees()
+                    Button:
+                        text: "Transport"
+                        on_release: app.root.ids['features'].manage_transport()
+                    Button:
+                        text: "Cafeteria"
+                        on_release: app.root.ids['features'].manage_cafeteria()
+                    Button:
+                        text: "Clubs"
+                        on_release: app.root.ids['features'].manage_clubs()
+                    Button:
+                        text: "Achievements"
+                        on_release: app.root.ids['features'].manage_achievements()
+                    Button:
+                        text: "Emergency"
+                        on_release: app.root.ids['features'].manage_emergency()
+                    Button:
+                        text: "Assignments"
+                        on_release: app.root.ids['features'].manage_assignments()
+
+<TeacherDashboardScreen>:
+    name: "teacher_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .16, .52, .16, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Teacher Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(18)
+                Image:
+                    source: root.photo if root.photo else "assets/default_photo.png"
+                    size_hint_y: None
+                    height: dp(140)
+                    allow_stretch: True
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(50)
+                    row_force_default: True
+                    spacing: dp(10)
+                    Button:
+                        text: "Give Assignment"
+                        on_release: app.root.ids['features'].teacher_give_assignment()
+                    Button:
+                        text: "View Assignments"
+                        on_release: app.root.ids['features'].teacher_view_assignments()
+                    Button:
+                        text: "Attendance"
+                        on_release: app.root.ids['features'].teacher_attendance()
+                    Button:
+                        text: "Timetable"
+                        on_release: app.root.ids['features'].teacher_timetable()
+                    Button:
+                        text: "Announcements"
+                        on_release: app.root.ids['features'].teacher_announcements()
+                    Button:
+                        text: "Events"
+                        on_release: app.root.ids['features'].teacher_events()
+
+<StudentDashboardScreen>:
+    name: "student_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .13, .59, .95, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Student Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(18)
+                Image:
+                    source: root.photo if root.photo else "assets/default_photo.png"
+                    size_hint_y: None
+                    height: dp(140)
+                    allow_stretch: True
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(50)
+                    row_force_default: True
+                    spacing: dp(10)
+                    Button:
+                        text: "Timetable"
+                        on_release: app.root.ids['features'].student_timetable()
+                    Button:
+                        text: "Assignments"
+                        on_release: app.root.ids['features'].student_assignments()
+                    Button:
+                        text: "Announcements"
+                        on_release: app.root.ids['features'].student_announcements()
+                    Button:
+                        text: "Events"
+                        on_release: app.root.ids['features'].student_events()
+                    Button:
+                        text: "Resources"
+                        on_release: app.root.ids['features'].student_resources()
+                    Button:
+                        text: "Fees"
+                        on_release: app.root.ids['features'].student_fees()
+                    Button:
+                        text: "Transport"
+                        on_release: app.root.ids['features'].student_transport()
+                    Button:
+                        text: "Cafeteria"
+                        on_release: app.root.ids['features'].student_cafeteria()
+                    Button:
+                        text: "Clubs"
+                        on_release: app.root.ids['features'].student_clubs()
+                    Button:
+                        text: "Achievements"
+                        on_release: app.root.ids['features'].student_achievements()
+                    Button:
+                        text: "Emergency"
+                        on_release: app.root.ids['features'].student_emergency()
+                    Button:
+                        text: "Attendance"
+                        on_release: app.root.ids['features'].student_attendance()
+                    Button:
+                        text: "Marks"
+                        on_release: app.root.ids['features'].student_marks()
+
+<ParentDashboardScreen>:
+    name: "parent_dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            canvas.before:
+                Color: rgba: .96, .7, .07, 1
+                Rectangle: pos: self.pos; size: self.size
+            Label:
+                text: "Parent Dashboard"
+                color: 1,1,1,1
+                font_size: dp(22)
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(14)
+                spacing: dp(18)
+                Label:
+                    text: "Child: {}".format(root.student_name)
+                    font_size: dp(15)
+                    color: .2,.2,.2,1
+                GridLayout:
+                    cols: 2
+                    size_hint_y: None
+                    height: self.minimum_height
+                    row_default_height: dp(50)
+                    row_force_default: True
+                    spacing: dp(10)
+                    Button:
+                        text: "Announcements"
+                        on_release: app.root.ids['features'].parent_announcements()
+                    Button:
+                        text: "Events"
+                        on_release: app.root.ids['features'].parent_events()
+                    Button:
+                        text: "Resources"
+                        on_release: app.root.ids['features'].parent_resources()
+                    Button:
+                        text: "Fees"
+                        on_release: app.root.ids['features'].parent_fees()
+                    Button:
+                        text: "Transport"
+                        on_release: app.root.ids['features'].parent_transport()
+                    Button:
+                        text: "Clubs"
+                        on_release: app.root.ids['features'].parent_clubs()
+                    Button:
+                        text: "Achievements"
+                        on_release: app.root.ids['features'].parent_achievements()
+                    Button:
+                        text: "Emergency"
+                        on_release: app.root.ids['features'].parent_emergency()
+                    Button:
+                        text: "Attendance"
+                        on_release: app.root.ids['features'].parent_attendance()
+                    Button:
+                        text: "Marks"
+                        on_release: app.root.ids['features'].parent_marks()

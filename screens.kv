@@ -1,0 +1,170 @@
+#:import dp kivy.metrics.dp
+
+<SplashScreen>:
+    name: "splash"
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Image:
+            source: app.icon if app.icon else "assets/app_logo.png"
+            size_hint: None, None
+            size: dp(180), dp(180)
+            pos_hint: {"center_x":.5, "center_y":.65}
+        Label:
+            text: "Welcome to SchoolApp"
+            font_size: dp(24)
+            color: 0,0,0,1
+            pos_hint: {"center_x":.5, "center_y":.45}
+        Label:
+            text: "Empowering Future Leaders"
+            font_size: dp(16)
+            color: .2,.2,.2,1
+            pos_hint: {"center_x":.5, "center_y":.37}
+
+<LoginScreen>:
+    name: "login"
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                source: "assets/background.png" if os.path.exists("assets/background.png") else ""
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: .95, .7
+            pos_hint: {'center_x':.5, 'center_y':.52}
+            spacing: dp(20)
+            Image:
+                source: app.icon if app.icon else "assets/app_logo.png"
+                size_hint: None, None
+                size: dp(110), dp(110)
+                pos_hint: {'center_x':.5}
+            Label:
+                text: "School Management Login"
+                font_size: dp(20)
+                color: 0, 0, 0, 1
+            TextInput:
+                id: username
+                hint_text: "Username"
+                size_hint_y: None
+                height: dp(40)
+                multiline: False
+            TextInput:
+                id: password
+                hint_text: "Password"
+                size_hint_y: None
+                height: dp(40)
+                multiline: False
+                password: True
+            Button:
+                text: "Login"
+                size_hint_y: None
+                height: dp(42)
+                background_color: .11, .37, .82, 1
+                on_release:
+                    app.show_dashboard("admin", username.text)  # For demo, always login as admin
+
+            Button:
+                text: "About/Privacy"
+                size_hint_y: None
+                height: dp(38)
+                background_color: .25, .30, .40, 1
+                on_release:
+                    app.open_about()
+
+<MenuPopup>:
+    title: "Menu"
+    size_hint: None, None
+    size: dp(240), dp(350)
+    auto_dismiss: True
+    background_color: 1,1,1,1
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(14)
+        spacing: dp(16)
+        Button:
+            text: "Profile"
+            on_release: app.open_profile(); root.dismiss()
+        Button:
+            text: "School History"
+            on_release: app.open_school_history(); root.dismiss()
+        Button:
+            text: "Privacy & Policy"
+            on_release: app.open_privacy(); root.dismiss()
+        Button:
+            text: "About"
+            on_release: app.open_about(); root.dismiss()
+        Button:
+            text: "Logout"
+            on_release: app.logout(); root.dismiss()
+
+<DashboardScreen>:
+    name: "dashboard"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            size_hint_y: None
+            height: dp(62)
+            spacing: dp(6)
+            padding: dp(10), dp(2)
+            canvas.before:
+                Color:
+                    rgba: .11, .37, .82, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "SchoolApp Dashboard"
+                bold: True
+                font_size: dp(22)
+                color: 1,1,1,1
+                size_hint_x: 0.88
+                halign: "left"
+                valign: "middle"
+            Button:
+                text: "☰"
+                font_size: dp(28)
+                background_color: 0,0,0,0
+                color: 1,1,1,1
+                size_hint_x: 0.12
+                on_release: app.show_menu()
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(10)
+                spacing: dp(18)
+                Image:
+                    source: root.dashboard_img
+                    size_hint_y: None
+                    height: dp(180)
+                    allow_stretch: True
+                    keep_ratio: True
+                    pos_hint: {"center_x":.5}
+                Label:
+                    text: "[b]Welcome, {}![/b]".format(root.username)
+                    font_size: dp(20)
+                    markup: True
+                    color: .12,.33,.55,1
+                    size_hint_y: None
+                    height: dp(36)
+                Label:
+                    text: "Select your dashboard features using the menu above."
+                    font_size: dp(15)
+                    color: .2,.2,.2,1
+                # Placeholders for sections (will be filled in later parts)
+                Label:
+                    text: "Developer Details, School History, Privacy & Policy"
+                    font_size: dp(13)
+                    color: .33, .33, .33, 1
